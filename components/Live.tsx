@@ -7,7 +7,11 @@ import ReactionSelector from "./reaction/ReactionButton";
 import FlyingReaction from "./reaction/FlyingReaction";
 import useInterval from "@/hooks/useInterval";
 
-const Live = () => {
+type Props = {
+  canvasRef : React.MutableRefObject<HTMLCanvasElement | null>
+}
+
+const Live = ({canvasRef} : Props) => {
   const others = useOthers();
   const [{ cursor }, updateMyPresence] = useMyPresence() as any;
 
@@ -66,7 +70,7 @@ const Live = () => {
     }
   }, []);
 
-  const handlePointerLeave = useCallback((e: React.PointerEvent) => {
+  const handlePointerLeave = useCallback(() => {
     setCursorState({
       mode: CursorMode.Hidden,
     });
@@ -88,7 +92,7 @@ const Live = () => {
     setCursorState((state : CursorState)=>cursorState.mode === CursorMode.Reaction ? {...state, isPressed : true} : state);
   }, [cursorState.mode ,setCursorState]);
 
-  const handlePointerUp = useCallback((e: React.PointerEvent) => {
+  const handlePointerUp = useCallback(() => {
     setCursorState((state : CursorState)=>cursorState.mode === CursorMode.Reaction ? {...state, isPressed : true} : state);
   }, [cursorState.mode ,setCursorState]);
 
@@ -135,13 +139,14 @@ const Live = () => {
 
   return (
     <div
+      id="canvas"
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
       className="relative flex h-[100vh] w-full flex-1 items-center justify-center"
     >
-      <h1 className="text-2xl text-white">LiveBlocks Figma Clone</h1>
+      <canvas ref = {canvasRef}/>
 
       {reaction.map((r)=>(
         <>

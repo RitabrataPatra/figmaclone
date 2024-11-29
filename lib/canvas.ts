@@ -1,4 +1,4 @@
-import { fabric } from "fabric";
+import * as fabric from "fabric";
 import { v4 as uuid4 } from "uuid";
 
 import {
@@ -22,6 +22,10 @@ export const initializeFabric = ({
   fabricRef: React.MutableRefObject<fabric.Canvas | null>;
   canvasRef: React.MutableRefObject<HTMLCanvasElement | null>;
 }) => {
+  // Dispose of any existing fabric instance
+  if (fabricRef.current) {
+    fabricRef.current.dispose();
+  }
   // get canvas element
   const canvasElement = document.getElementById("canvas");
 

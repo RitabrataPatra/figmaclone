@@ -104,11 +104,11 @@ export const exportToPdf = () => {
   if (!canvas) return;
 
   // use jspdf
-  const doc = new jsPDF({
-    orientation: "landscape",
-    unit: "px",
-    format: [canvas.width, canvas.height],
-  });
+  // const doc = new jsPDF({
+  //   orientation: "landscape",
+  //   unit: "px",
+  //   format: [canvas.width, canvas.height],
+  // });
 
   // get the canvas data url
   const data = canvas.toDataURL();

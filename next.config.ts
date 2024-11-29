@@ -1,7 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images:{
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'liveblocks.io',
+        port: '',
+        // Add other required properties of ImageConfigComplete here
+      } 
+    ]
+  }
+  
 };
 
 export default nextConfig;
