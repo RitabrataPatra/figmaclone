@@ -30,7 +30,7 @@ export const initializeFabric = ({
   const canvasElement = document.getElementById("canvas");
 
   // create fabric canvas
-  const canvas = new fabric.Canvas(canvasRef.current, {
+  const canvas = new fabric.Canvas(canvasRef.current ?? undefined, {
     width: canvasElement?.clientWidth,
     height: canvasElement?.clientHeight,
   });
@@ -67,7 +67,11 @@ export const handleCanvasMouseDown = ({
   if (selectedShapeRef.current === "freeform") {
     isDrawing.current = true;
     canvas.isDrawingMode = true;
-    canvas.freeDrawingBrush.width = 5;
+    if (canvas.freeDrawingBrush) {
+      canvas.freeDrawingBrush.width = 5;
+    } else {
+      console.error('freeDrawingBrush is undefined');
+    }
     return;
   }
 
@@ -378,7 +382,7 @@ export const renderCanvas = ({
        *
        * Fabric Namespace: http://fabricjs.com/docs/fabric.html
        */
-      "fabric"
+      // "fabric"
     );
   });
 

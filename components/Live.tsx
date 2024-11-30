@@ -97,7 +97,7 @@ const Live = ({canvasRef} : Props) => {
   }, [cursorState.mode ,setCursorState]);
 
 
-
+//keboard events like '/' for comment and 'e' for reaction
   useEffect(() => {
     const onKeyUp = (e: KeyboardEvent) => {
       if (e.key === "/") {
@@ -139,6 +139,7 @@ const Live = ({canvasRef} : Props) => {
 
   return (
     <div
+      key = {cursorState.mode}
       id="canvas"
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
@@ -146,7 +147,7 @@ const Live = ({canvasRef} : Props) => {
       onPointerUp={handlePointerUp}
       className="relative flex h-[100vh] w-full flex-1 items-center justify-center"
     >
-      <canvas ref = {canvasRef}/>
+      <canvas ref = {canvasRef} width="100% "height="100%"/>
 
       {reaction.map((r)=>(
         <>

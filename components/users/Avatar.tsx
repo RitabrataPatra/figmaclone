@@ -22,6 +22,7 @@ export function Avatar({  name , otherStyles}: { otherStyles?: string; name: str
         fill
         className={styles.avatar_picture}
         alt={name}
+        sizes="100%"
       />
     </div>
   );

@@ -1,4 +1,4 @@
-import { fabric } from "fabric";
+import * as fabric from "fabric";
 import { v4 as uuidv4 } from "uuid";
 
 import {
@@ -17,7 +17,8 @@ export const createRectangle = (pointer: PointerEvent) => {
     fill: "#aabbcc",
     objectId: uuidv4(),
   } as CustomFabricObject<fabric.Rect>);
-
+  // console.log("rect", rect);
+  // console.log(pointer);
   return rect;
 };
 
